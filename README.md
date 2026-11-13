@@ -2,7 +2,7 @@
 
 UR7e眼在手上的D435/D435i感知工作区，提供Gazebo实验台仿真、深度与颜色融合、彩色Mesh重建、二维/三维ESDF及ROS可视化。
 
-ROS输入与调度由Python实现，核心地图计算使用官方`nvblox_torch` wheel中的nvBlox C++/CUDA。本地`native/`桥接补充原生地图层导出等能力。运行不需要原来的`perception_eye_in_hand`父工程或`workspaces/isaac_ros-dev`，但需要安装匹配的ROS、CUDA、Torch与nvBlox依赖，并在目标机编译。
+ROS输入与调度由Python实现，核心地图计算使用官方`nvblox_torch` wheel中的nvBlox C++/CUDA。本地`native/`桥接补充原生地图层导出等能力。
 
 本文以工作区位于`$HOME/ur7e_nvblox_in_hand`为例。命令须在满足对应前置条件后执行；源码复制完成不代表已在新路径完成编译或性能验证。
 
