@@ -1,0 +1,31 @@
+# Real UR7e/D435i input profile. Not a robot motion or calibration configuration.
+# First run uses depth only; enable color explicitly after optical model checks.
+/**:
+  ros__parameters:
+    global_frame: base_link
+    esdf_mode: 3d
+    voxel_size: 0.03
+    depth_topic: /camera/camera/depth/image_rect_raw
+    depth_info_topic: /camera/camera/depth/camera_info
+    color_topic: /camera/camera/color/image_raw
+    color_info_topic: /camera/camera/color/camera_info
+    enable_depth: true
+    enable_color: false
+    enable_esdf: true
+    enable_esdf_view: true
+    enable_mesh: true
+    enable_layers: true
+    publish_pose: true
+    publish_path: true
+    min_depth_m: 0.2
+    max_range_m: 3.0
+    depth_hz: 40.0
+    color_hz: 40.0
+    esdf_hz: 33.4
+    esdf_view_hz: 33.4
+    mesh_hz: 5.0
+    layer_hz: 5.0
+    decay_hz: 0.0
+    clearing_hz: 0.0
+    input_queue_size: 3
+    max_input_age_sec: 0.5

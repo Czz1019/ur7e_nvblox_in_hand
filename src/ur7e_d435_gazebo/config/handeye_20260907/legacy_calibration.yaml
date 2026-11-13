@@ -1,0 +1,47 @@
+# D435i 1920x1080 color CameraInfo captured in both 20260907 hand-eye sets.
+# The runtime vision path still consumes live CameraInfo; these values document
+# the exact intrinsics used for the hand-eye optimization.
+legacy_color_resolution: [1920, 1080]
+camera_matrix:
+  - [1367.0, 0.0, 958.988586]
+  - [0.0, 1367.491333, 574.527527]
+  - [0.0, 0.0, 1.0]
+distortion_coefficients:
+  - [0.0, 0.0, 0.0, 0.0, 0.0]
+
+# gripper_T_camera; translation is stored in millimetres. Calibrated from 22
+# ChArUco views (DICT_4X4_1000, 7x5, 25/18 mm) on 2026-09-07. The solve fixed
+# intrinsics to live CameraInfo and jointly optimized the fixed board pose.
+gripper_T_camera:
+  - [-0.706401, 0.002415, -0.707808, -29.901376]
+  - [0.707784, -0.006516, -0.706399, -69.185919]
+  - [-0.006318, -0.999976, 0.002894, -12.263443]
+  - [0.0, 0.0, 0.0, 1.0]
+
+# base_T_table; translation is stored in metres.
+base_T_table:
+  - [0.711477, 0.702705, 0.002442, 0.477916]
+  - [-0.702622, 0.711439, -0.013306, -0.380219]
+  - [-0.011088, 0.007751, 0.999908, -0.000797]
+  - [0.0, 0.0, 0.0, 1.0]
+
+# Groove radius is stored at the 1280px reference width and scaled to the
+# live stream. The pipette ROI is projected in Table millimetres.
+glass_alignment:
+  image_topic: /camera/camera/color/image_raw
+  camera_info_topic: /camera/camera/color/camera_info
+  radius_reference_width_px: 1920.0
+  min_radius_px: 90.0
+  max_radius_px: 120.0
+  pipette_roi_radius_mm: 50.0
+  roi_scale: 0.85
+  detection_timeout_s: 15.0
+  align_reference: pipette
+  pipette_offset_x_mm: -57.0
+  pipette_offset_y_mm: 8.5
+  gain: 0.7
+  max_step_mm: 10.0
+  tolerance_mm: 0.5
+  tolerance_px: 3.0
+  max_iterations: 12
+  settle_seconds: 1.0

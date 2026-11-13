@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<sdf version="1.7"><world name="lab">
+  <physics type="ode"><max_step_size>0.001</max_step_size><real_time_update_rate>1000</real_time_update_rate></physics>
+  <scene><ambient>0.55 0.55 0.55 1</ambient><background>0.72 0.77 0.82 1</background><shadows>true</shadows></scene>
+  <light name="lab_sun" type="directional"><pose>0 0 5 0 0 0</pose><diffuse>0.75 0.75 0.75 1</diffuse><specular>0.1 0.1 0.1 1</specular><direction>-0.3 0.2 -1</direction><cast_shadows>true</cast_shadows></light>
+  <model name="lab_floor"><static>true</static><link name="floor">
+    <collision name="floor_collision"><pose>0 0 -0.845 0 0 0</pose><geometry><box><size>20 20 0.05</size></box></geometry></collision>
+    <visual name="floor_visual"><pose>0 0 -0.845 0 0 0</pose><geometry><box><size>20 20 0.05</size></box></geometry><material><ambient>0.35 0.38 0.40 1</ambient><diffuse>0.35 0.38 0.40 1</diffuse></material></visual>
+  </link></model>
+  <gui><camera name="user_camera"><pose>1.85 -2.05 1.5 0 0.458 2.203</pose><view_controller>orbit</view_controller></camera></gui>
+  <model name="lab_overview"><static>true</static><pose>1.85 -2.05 1.5 0 0.458 2.203</pose><link name="camera">
+    <sensor name="overview" type="camera"><always_on>true</always_on><update_rate>2</update_rate>
+      <camera><horizontal_fov>1.0</horizontal_fov><image><width>1280</width><height>800</height><format>R8G8B8</format></image><clip><near>0.05</near><far>20</far></clip></camera>
+      <plugin name="overview_ros" filename="libgazebo_ros_camera.so"><ros><namespace>/lab/overview</namespace></ros><camera_name>overview</camera_name><frame_name>lab_overview_optical_frame</frame_name></plugin>
+    </sensor>
+  </link></model>
+</world></sdf>

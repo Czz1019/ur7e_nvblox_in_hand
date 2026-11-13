@@ -1,0 +1,43 @@
+# Metres; base_link/world z=0 is the bench top, not the room floor.
+bench:
+  center_xy: [0.35, 0.0]
+  size_xy: [1.4, 1.1]
+  height: 0.82
+  thickness: 0.05
+racks:
+  - name: blue_rack
+    center_xy: [0.43, -0.16]
+    rows: 3
+    columns: 5
+    pitch: 0.05
+    rail_width: 0.006
+    hole_radius: 0.0175
+    ring_radius: 0.024
+    top_height: 0.10
+    tube_radius: 0.0115
+    tube_height: 0.16
+    color: [0.08, 0.30, 0.65, 1.0]
+  - name: white_rack
+    center_xy: [0.70, 0.18]
+    rows: 2
+    columns: 4
+    pitch: 0.055
+    rail_width: 0.006
+    hole_radius: 0.020
+    ring_radius: 0.026
+    top_height: 0.11
+    tube_radius: 0.015
+    tube_height: 0.18
+    color: [0.82, 0.85, 0.89, 1.0]
+bottles:
+  - {name: reagent_a, xy: [0.23, 0.22], radius: 0.035, height: 0.15, color: [0.64, 0.30, 0.10, 1.0]}
+  - {name: reagent_b, xy: [0.37, 0.29], radius: 0.040, height: 0.19, color: [0.89, 0.90, 0.86, 1.0]}
+  - {name: reagent_c, xy: [0.52, 0.35], radius: 0.030, height: 0.13, color: [0.14, 0.48, 0.47, 1.0]}
+tray: {center_xy: [0.76, -0.23], size_xy: [0.28, 0.24], rim_height: 0.028}
+flask_xy: [0.59, -0.39]
+# Known edges and gaps spanning below/above the 2cm map resolution.
+blocks:
+  - {name: block_20mm, xyz: [0.20, -0.37, 0.01], size: [0.02, 0.04, 0.02], color: [0.85, 0.15, 0.12, 1.0]}
+  - {name: block_40mm, xyz: [0.28, -0.37, 0.02], size: [0.04, 0.05, 0.04], color: [0.96, 0.65, 0.08, 1.0]}
+  - {name: block_60mm, xyz: [0.38, -0.37, 0.03], size: [0.06, 0.06, 0.06], color: [0.14, 0.61, 0.28, 1.0]}
+  - {name: block_100mm, xyz: [0.87, 0.38, 0.05], size: [0.10, 0.10, 0.10], color: [0.40, 0.25, 0.65, 1.0]}

@@ -1,0 +1,49 @@
+# Hand-eye transform: tool0 -> camera_color_optical_frame; metres; quaternion xyzw.
+parameters:
+  name: my_eih_calib
+  calibration_type: eye_in_hand
+  robot_base_frame: base_link
+  robot_effector_frame: tool0
+  tracking_base_frame: camera_color_optical_frame
+  tracking_marker_frame: camera_marker
+  freehand_robot_movement: true
+  move_group_namespace: /
+  move_group: manipulator
+transform:
+  # translation:
+  #   x: -0.0325
+  #   y: -0.075
+  #   z: 0.0357
+  # rotation:
+  #   x: 0.0
+  #   y: 0.0
+  #   z: 0.0
+  #   w: 1.0
+  # translation:
+  #   x: -0.017628
+  #   y: -0.059898
+  #   z: -0.011736
+
+  # rotation:
+  #   x: -0.269397
+  #   y: -0.654924
+  #   z: 0.649293
+  #   w: 0.277342
+  translation:
+    x: -0.01527041
+    y: -0.06351332
+    z: -0.01396895
+  rotation:
+    x: -0.26479301
+    y: -0.65367745
+    z: 0.65022001
+    w: 0.28249673
+# simulation_mount:
+#   description: Designed outer-side eye-in-hand fixture on tool0 -Y, away from base
+#     at the tall initial pose. Central tool axis stays free. Not a measured calibration.
+#   housing_center_xy:
+#   - 0
+#   - -0.075
+#   housing_front_z: 0.04
+#   housing_back_z: 0.014945
+#   optical_forward_axis: tool0 +Z

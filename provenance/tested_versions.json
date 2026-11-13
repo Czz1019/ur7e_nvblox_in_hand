@@ -1,0 +1,24 @@
+{
+  "python": "3.10.12 (main, Aug 31 2026, 10:18:17) [GCC 11.4.0]",
+  "platform": "Ubuntu22.04 / ROS2 Humble",
+  "gpu": "RTX4060 Laptop",
+  "driver_observed": "580.178.04",
+  "cuda_toolkit_observed": "12.6.20",
+  "python_packages": {
+    "torch": "2.9.1",
+    "torchvision": "0.24.1",
+    "nvblox-torch": "0.0.10.dev1+cu12ubuntu22",
+    "numpy": "1.26.4",
+    "scipy": "1.15.3",
+    "PyYAML": "6.0.3",
+    "open3d": "0.19.0",
+    "opencv-python": "4.5.5.62",
+    "einops": "0.8.2",
+    "imageio": "2.37.2",
+    "matplotlib": "3.10.9",
+    "nvtx": "0.2.15",
+    "timm": "1.0.25",
+    "transforms3d": "0.4.2",
+    "setuptools": "79.0.1"
+  }
+}

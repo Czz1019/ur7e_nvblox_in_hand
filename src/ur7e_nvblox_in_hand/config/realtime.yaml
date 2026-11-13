@@ -1,0 +1,12 @@
+/**:
+  ros__parameters:
+    depth_hz: 40.0
+    color_hz: 40.0
+    esdf_hz: 33.4
+    esdf_view_hz: 33.4
+    esdf_view_stride: 2
+    voxel_size: 0.005
+    # Static reconstruction keeps observations; do not inherit a positive
+    # clearing rate paired with the disabled (negative) radius from base.
+    clearing_hz: 0.0
+    decay_hz: 0.0

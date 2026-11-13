@@ -1,0 +1,14 @@
+/**:
+  ros__parameters:
+    enable_color: true
+    enable_depth: true
+    enable_infra1: false
+    enable_infra2: false
+    enable_gyro: false
+    enable_accel: false
+    depth_module.depth_profile: 640x480x30
+    rgb_camera.color_profile: 640x480x30
+    rgb_camera.color_format: RGB8
+    align_depth.enable: false
+    enable_sync: true
+    publish_tf: true

@@ -1,0 +1,7 @@
+# Existing observation pose, instantiated directly; no automatic robot motion.
+shoulder_pan_joint: 0.0002375289788783275
+shoulder_lift_joint: -1.4444759507438474
+elbow_joint: 0.5353018162166767
+wrist_1_joint: -0.5694437515765914
+wrist_2_joint: -3.2154871787681256
+wrist_3_joint: -0.794756831302454

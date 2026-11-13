@@ -1,0 +1,116 @@
+{
+  "scope": "Initial tall pose; camera actual DAE triangles vs all arm visual and collision meshes",
+  "distance_m": {
+    "visual:base_link_inertia": 0.800747,
+    "visual:shoulder_link": 0.710661,
+    "visual:upper_arm_link": 0.506996,
+    "visual:forearm_link": 0.168217,
+    "visual:wrist_1_link": 0.135536,
+    "visual:wrist_2_link": 0.0683897,
+    "visual:wrist_3_link": 0.0372163,
+    "collision:base_link_inertia": 0.800747,
+    "collision:shoulder_link": 0.710661,
+    "collision:upper_arm_link": 0.507023,
+    "collision:forearm_link": 0.168202,
+    "collision:wrist_1_link": 0.135536,
+    "collision:wrist_2_link": 0.0683897,
+    "collision:wrist_3_link": 0.0370877
+  },
+  "camera_bounds_in_tool0_m": [
+    [
+      -0.045000000000000005,
+      -0.08749999999999984,
+      0.014945000000000073
+    ],
+    [
+      0.044913999999999996,
+      -0.06249999999999983,
+      0.04000000000000011
+    ]
+  ],
+  "external_transform": [
+    [
+      1.0,
+      0.0,
+      0.0,
+      -0.0325
+    ],
+    [
+      0.0,
+      1.0,
+      0.0,
+      -0.075
+    ],
+    [
+      0.0,
+      0.0,
+      1.0,
+      0.0357
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "fixture_distance_m": {
+    "flange_edge_pad:base_link_inertia": 0.78313,
+    "flange_edge_pad:shoulder_link": 0.687536,
+    "flange_edge_pad:upper_arm_link": 0.467193,
+    "flange_edge_pad:forearm_link": 0.138984,
+    "flange_edge_pad:wrist_1_link": 0.0948569,
+    "flange_edge_pad:wrist_2_link": 0.0466543,
+    "flange_edge_pad:wrist_3_link": 0.000202769,
+    "flange_edge_pad:camera_link": 0.0312138,
+    "lateral_arm:base_link_inertia": 0.786005,
+    "lateral_arm:shoulder_link": 0.691086,
+    "lateral_arm:upper_arm_link": 0.472965,
+    "lateral_arm:forearm_link": 0.145581,
+    "lateral_arm:wrist_1_link": 0.101253,
+    "lateral_arm:wrist_2_link": 0.0506524,
+    "lateral_arm:wrist_3_link": 0.00420383,
+    "lateral_arm:camera_link": 0.0067469,
+    "camera_support:base_link_inertia": 0.818959,
+    "camera_support:shoulder_link": 0.726152,
+    "camera_support:upper_arm_link": 0.511956,
+    "camera_support:forearm_link": 0.176531,
+    "camera_support:wrist_1_link": 0.13513,
+    "camera_support:wrist_2_link": 0.063609,
+    "camera_support:wrist_3_link": 0.0364104,
+    "camera_support:camera_link": 0.00295,
+    "camera_back_plate:base_link_inertia": 0.809239,
+    "camera_back_plate:shoulder_link": 0.716349,
+    "camera_back_plate:upper_arm_link": 0.506477,
+    "camera_back_plate:forearm_link": 0.165155,
+    "camera_back_plate:wrist_1_link": 0.132577,
+    "camera_back_plate:wrist_2_link": 0.0644489,
+    "camera_back_plate:wrist_3_link": 0.0338783,
+    "camera_back_plate:camera_link": 4.64e-05
+  },
+  "live_verification": {
+    "tf": "PASS tool0 -> camera_color_optical_frame, y=-0.075",
+    "/camera/depth/image_rect_raw": [
+      "camera_depth_optical_frame",
+      1280,
+      720
+    ],
+    "/camera/depth/color/points": [
+      "camera_depth_optical_frame",
+      1280,
+      720
+    ],
+    "/camera/color/image_raw": [
+      "camera_color_optical_frame",
+      1280,
+      720
+    ]
+  },
+  "date": "2026-09-15",
+  "result": "PASS outer-side mount: all 14 camera/arm mesh and 32 fixture/arm-or-camera pairs do not intersect.",
+  "base_radial_distance_at_initial_pose_m": {
+    "previous_inner_side": 0.4497413049,
+    "current_outer_side": 0.5788714633
+  },
+  "method": "Gazebo MeshManager and FCL OBBRSS triangle collision/distance; fixture boxes vs original meshes."
+}

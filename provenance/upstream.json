@@ -1,0 +1,14 @@
+{
+  "repository": "https://github.com/nvidia-isaac/nvblox",
+  "commit": "e4a2b00f45ecf989682d72a33a2c29defe39fd2d",
+  "wheel": "0.0.10.dev1+cu12ubuntu22",
+  "scope": "nvblox/include and nvblox_torch/cpp/include only; no core binaries or Isaac ROS copied",
+  "header_patch": "none",
+  "scene_source": "../nvblox_in_hand/src/ur7e_d435_gazebo",
+  "scene_copy": true,
+  "stdgpu_headers": {
+    "source": "/home/czz/workspaces/isaac_ros-dev/install/nvblox_ros/include/stdgpu",
+    "use": "vendored compile-time declarations only; no runtime path to workspaces",
+    "license": "Apache-2.0 headers retained"
+  }
+}

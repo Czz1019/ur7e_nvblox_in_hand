@@ -1,0 +1,336 @@
+<?xml version="1.0"?>
+
+<robot
+    xmlns:xacro="http://wiki.ros.org/xacro"
+    name="ur">
+
+  <xacro:arg name="camera_width" default="640"/>
+  <xacro:arg name="camera_height" default="480"/>
+  <xacro:arg name="sim_camera_reliability" default="reliable"/>
+
+  <!-- ============================================================
+       UR7e
+       ============================================================ -->
+
+  <xacro:arg
+      name="name"
+      default="ur"/>
+
+  <xacro:include
+      filename="$(find ur7e_d435_gazebo)/urdf/ur7e_base.urdf.xacro"/>
+
+
+  <!-- ============================================================
+       Hand-eye D435 mounting macro
+       ============================================================ -->
+
+  <xacro:include
+      filename="$(find ur7e_d435_gazebo)/urdf/d435_handeye_mount.urdf.xacro"/>
+
+
+  <!-- ============================================================
+       Calibration file
+       ============================================================ -->
+
+  <xacro:arg
+      name="eih_calibration"
+      default="$(find ur7e_d435_gazebo)/config/ur7e_d435_handeye_20260907.yaml"/>
+
+
+  <!-- ============================================================
+       Attach D435
+
+       The calibration defines:
+
+           tool0 -> camera_color_optical_frame
+
+       The macro then reconstructs the physical camera housing.
+       ============================================================ -->
+
+  <xacro:d435_handeye_mount
+      parent="tool0"
+      calibration_file="$(arg eih_calibration)"/>
+
+
+  <!-- ============================================================
+       Gazebo depth sensor
+       ============================================================ -->
+
+  <gazebo reference="camera_link">
+
+    <sensor
+        name="cameradepth"
+        type="depth">
+
+      <always_on>1</always_on>
+
+      <update_rate>30</update_rate>
+
+      <visualize>0</visualize>
+
+      <camera name="depth_camera">
+
+        <horizontal_fov>1.57</horizontal_fov>
+
+        <image>
+
+          <width>$(arg camera_width)</width>
+
+          <height>$(arg camera_height)</height>
+
+        </image>
+
+        <clip>
+
+          <near>0.1</near>
+
+          <far>10.0</far>
+
+        </clip>
+
+        <noise>
+
+          <type>gaussian</type>
+
+          <mean>0.0</mean>
+
+          <stddev>0.02</stddev>
+
+        </noise>
+
+      </camera>
+
+    </sensor>
+
+
+    <!-- ==========================================================
+         Color sensor
+
+         D435 color sensor is offset approximately +15 mm.
+         ========================================================== -->
+
+    <sensor
+        name="cameracolor"
+        type="camera">
+
+      <pose>
+        0 0.015 0 0 0 0
+      </pose>
+
+      <always_on>1</always_on>
+
+      <update_rate>30</update_rate>
+
+      <visualize>0</visualize>
+
+      <camera name="color_camera">
+
+        <horizontal_fov>1.57</horizontal_fov>
+
+        <image>
+
+          <width>$(arg camera_width)</width>
+
+          <height>$(arg camera_height)</height>
+
+          <format>RGB_INT8</format>
+
+        </image>
+
+        <clip>
+
+          <near>0.1</near>
+
+          <far>10.0</far>
+
+        </clip>
+
+      </camera>
+
+    </sensor>
+
+
+    <!-- ==========================================================
+         Left IR
+         ========================================================== -->
+
+    <sensor
+        name="cameraired1"
+        type="camera">
+
+      <always_on>1</always_on>
+
+      <update_rate>1</update_rate>
+
+      <visualize>0</visualize>
+
+      <camera name="ir_left_camera">
+
+        <horizontal_fov>1.57</horizontal_fov>
+
+        <image>
+
+          <width>1280</width>
+
+          <height>720</height>
+
+          <format>L_INT8</format>
+
+        </image>
+
+      </camera>
+
+    </sensor>
+
+
+    <!-- ==========================================================
+         Right IR
+         ========================================================== -->
+
+    <sensor
+        name="cameraired2"
+        type="camera">
+
+      <pose>
+        0 -0.050 0 0 0 0
+      </pose>
+
+      <always_on>1</always_on>
+
+      <update_rate>1</update_rate>
+
+      <visualize>0</visualize>
+
+      <camera name="ir_right_camera">
+
+        <horizontal_fov>1.57</horizontal_fov>
+
+        <image>
+
+          <width>1280</width>
+
+          <height>720</height>
+
+          <format>L_INT8</format>
+
+        </image>
+
+      </camera>
+
+    </sensor>
+
+  </gazebo>
+
+
+  <!-- ============================================================
+       RealSense Gazebo plugin
+       ============================================================ -->
+
+  <gazebo>
+
+    <plugin
+        name="camera"
+        filename="librealsense_gazebo_plugin.so">
+      <imageReliability>$(arg sim_camera_reliability)</imageReliability>
+
+      <prefix>
+        camera
+      </prefix>
+
+      <depthUpdateRate>
+        30.0
+      </depthUpdateRate>
+
+      <colorUpdateRate>
+        30.0
+      </colorUpdateRate>
+
+      <infraredUpdateRate>
+        1.0
+      </infraredUpdateRate>
+
+
+      <depthTopicName>
+        depth/image_rect_raw
+      </depthTopicName>
+
+      <depthCameraInfoTopicName>
+        depth/camera_info
+      </depthCameraInfoTopicName>
+
+
+      <colorTopicName>
+        color/image_raw
+      </colorTopicName>
+
+      <colorCameraInfoTopicName>
+        color/camera_info
+      </colorCameraInfoTopicName>
+
+
+      <infrared1TopicName>
+        infra1/image_raw
+      </infrared1TopicName>
+
+      <infrared1CameraInfoTopicName>
+        infra1/camera_info
+      </infrared1CameraInfoTopicName>
+
+
+      <infrared2TopicName>
+        infra2/image_raw
+      </infrared2TopicName>
+
+      <infrared2CameraInfoTopicName>
+        infra2/camera_info
+      </infrared2CameraInfoTopicName>
+
+
+      <colorOpticalframeName>
+        camera_color_optical_frame
+      </colorOpticalframeName>
+
+      <depthOpticalframeName>
+        camera_depth_optical_frame
+      </depthOpticalframeName>
+
+      <infrared1OpticalframeName>
+        camera_infra1_optical_frame
+      </infrared1OpticalframeName>
+
+      <infrared2OpticalframeName>
+        camera_infra2_optical_frame
+      </infrared2OpticalframeName>
+
+
+      <rangeMinDepth>
+        0.2
+      </rangeMinDepth>
+
+      <rangeMaxDepth>
+        6.0
+      </rangeMaxDepth>
+
+
+      <pointCloud>
+        true
+      </pointCloud>
+
+      <pointCloudTopicName>
+        depth/color/points
+      </pointCloudTopicName>
+
+      <pointCloudCutoff>
+        0.2
+      </pointCloudCutoff>
+
+      <pointCloudCutoffMax>
+        6.0
+      </pointCloudCutoffMax>
+
+    </plugin>
+
+  </gazebo>
+
+
+</robot>

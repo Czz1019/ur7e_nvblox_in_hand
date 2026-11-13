@@ -1,0 +1,7 @@
+/**:
+  ros__parameters:
+    depth_hz: 30.0
+    color_hz: 5.0
+    esdf_hz: 5.0
+    esdf_view_hz: 5.0
+    voxel_size: 0.02

@@ -1,0 +1,15 @@
+# XYZ triples in global_frame; query radius zero. Optional bounded AABB sampling.
+float32[] positions
+bool use_aabb
+float32[3] aabb_min
+float32[3] aabb_size
+bool update_esdf
+---
+bool success
+string message
+string frame_id
+int64 input_stamp_ns
+float32 voxel_size
+float32[] distances
+float32[] gradients
+bool[] observed

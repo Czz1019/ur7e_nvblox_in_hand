@@ -1,0 +1,169 @@
+Panels:
+- Class: rviz_common/Displays
+  Name: Displays
+- Class: rviz_common/Views
+  Name: Views
+- Class: rviz_common/Tool Properties
+  Name: Tool Properties
+Visualization Manager:
+  Class: ''
+  Enabled: true
+  Name: root
+  Global Options:
+    Fixed Frame: base_link
+    Frame Rate: 30
+    Background Color: 35; 35; 35
+  Displays:
+  - Class: rviz_default_plugins/Grid
+    Name: Base grid
+    Enabled: true
+    Cell Size: 0.1
+    Plane Cell Count: 30
+    Value: true
+  - Class: rviz_default_plugins/TF
+    Name: Robot and optical TF
+    Enabled: false
+    Show Names: false
+    Marker Scale: 0.1
+  - Class: rviz_default_plugins/MarkerArray
+    Name: Wheel RGB Mesh (full replacement)
+    Enabled: true
+    Value: true
+    Topic:
+      Value: /ur7e_nvblox/mesh
+      Depth: 1
+      Reliability Policy: Reliable
+      Durability Policy: Volatile
+      History Policy: Keep Last
+  - Class: rviz_default_plugins/PointCloud2
+    Name: Native observed 3D ESDF
+    Enabled: false
+    Value: false
+    Topic:
+      Value: /ur7e_nvblox/esdf_points
+      Depth: 1
+      Reliability Policy: Reliable
+      Durability Policy: Volatile
+      History Policy: Keep Last
+    Style: Points
+    Size (Pixels): 3
+    Size (m): 0.003
+    Position Transformer: XYZ
+    Color Transformer: Intensity
+    Channel Name: intensity
+    Autocompute Intensity Bounds: false
+    Min Intensity: -0.09
+    Max Intensity: 0.24
+    Use rainbow: true
+    Decay Time: 0
+    Alpha: 1
+    Invert Rainbow: false
+  - Class: rviz_default_plugins/PointCloud2
+    Name: Native 2D ESDF slice
+    Enabled: false
+    Value: false
+    Topic:
+      Value: /ur7e_nvblox/static_esdf_pointcloud
+      Depth: 5
+      Durability Policy: Volatile
+      Reliability Policy: Reliable
+      History Policy: Keep Last
+    Size (m): 0.02
+    Style: Points
+    Color Transformer: Intensity
+    Channel Name: intensity
+    Autocompute Intensity Bounds: false
+    Min Intensity: 0.0
+    Max Intensity: 1.0
+    Use rainbow: true
+    Invert Rainbow: false
+    Position Transformer: XYZ
+    Decay Time: 0
+    Size (Pixels): 3
+  - Class: rviz_default_plugins/Path
+    Name: Robot TF camera path
+    Enabled: true
+    Value: true
+    Topic:
+      Value: /ur7e_nvblox/camera_path
+      Depth: 5
+      Durability Policy: Transient Local
+      Reliability Policy: Reliable
+      History Policy: Keep Last
+    Color: 0; 255; 60
+    Line Style: Lines
+    Line Width: 0.008
+    Pose Style: None
+  - Class: rviz_default_plugins/Image
+    Name: D435 RGB input
+    Enabled: true
+    Value: true
+    Topic:
+      Value: /camera/color/image_raw
+      Depth: 5
+      Durability Policy: Volatile
+      Reliability Policy: Best Effort
+      History Policy: Keep Last
+  - Class: rviz_default_plugins/RobotModel
+    Name: UR7e and D435
+    Enabled: true
+    Description Source: Topic
+    Description Topic:
+      Value: /robot_description
+      Depth: 5
+      Durability Policy: Transient Local
+      Reliability Policy: Reliable
+      History Policy: Keep Last
+    Alpha: 1.0
+    Visual Enabled: true
+    Collision Enabled: false
+    Update Interval: 0.0
+    TF Prefix: ''
+  Tools:
+  - Class: rviz_default_plugins/MoveCamera
+  - Class: rviz_default_plugins/Interact
+  - Class: rviz_default_plugins/Select
+  - Class: rviz_default_plugins/FocusCamera
+  - Class: rviz_default_plugins/Measure
+  Transformation:
+    Current:
+      Class: rviz_default_plugins/TF
+  Views:
+    Current:
+      Class: rviz_default_plugins/Orbit
+      Name: Whole obstacle group
+      Target Frame: <Fixed Frame>
+      Distance: 2.4
+      Pitch: 0.55
+      Yaw: 2.5
+      Focal Point:
+        X: 0.4
+        Y: 0.075
+        Z: 0.3
+      Near Clip Distance: 0.01
+    Saved:
+    - Class: rviz_default_plugins/Orbit
+      Name: Whole obstacle group
+      Target Frame: <Fixed Frame>
+      Distance: 2.4
+      Pitch: 0.55
+      Yaw: 2.5
+      Focal Point:
+        X: 0.4
+        Y: 0.075
+        Z: 0.3
+      Near Clip Distance: 0.01
+    - Class: rviz_default_plugins/Orbit
+      Name: Top overview
+      Target Frame: <Fixed Frame>
+      Distance: 2.4
+      Pitch: 1.55
+      Yaw: 0.0
+      Focal Point:
+        X: 0.4
+        Y: 0.075
+        Z: 0.3
+      Near Clip Distance: 0.01
+Window Geometry:
+  Width: 1440
+  Height: 900

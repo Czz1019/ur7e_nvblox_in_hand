@@ -1,0 +1,56 @@
+# Measured ChArUco calibration; translation in metres, quaternion xyzw.
+parameters:
+  name: charuco_20260907
+  calibration_type: eye_in_hand
+  robot_base_frame: base_link
+  robot_effector_frame: tool0
+  tracking_base_frame: camera_color_optical_frame
+transform:
+  translation:
+    x: -0.029901376
+    y: -0.069185919
+    z: -0.012263443
+  rotation:
+    x: -0.27259021854810417
+    y: -0.6513429981602794
+    z: 0.6549447692495959
+    w: 0.26924750831171806
+calibration_provenance:
+  source: handeye_20260907/calibration_20260907.json
+  cross_checked_source: handeye_20260907/legacy_calibration.yaml
+  gripper_frame: tool0 (confirmed by user)
+  camera_frame_assumption: color optical frame, inferred from color ChArUco reprojection
+    calibration
+  method: joint nonlinear reprojection optimization with fixed live intrinsics and
+    fixed base-to-board pose
+  accepted_images: 22
+  global_corner_rmse_px: 2.1793760746
+  rotation_roundoff_correction_max: 4.667037867278623e-10
+  board:
+    dictionary: DICT_4X4_1000
+    squares_x: 7
+    squares_y: 5
+    square_length_mm: 25.0
+    marker_length_mm: 18.0
+    start_id: 0
+reference_color_intrinsics:
+  source: identical live CameraInfo in both datasets
+  resolution:
+  - 1920
+  - 1080
+  camera_matrix:
+  - - 1367.0
+    - 0.0
+    - 958.9885864257812
+  - - 0.0
+    - 1367.4913330078125
+    - 574.5275268554688
+  - - 0.0
+    - 0.0
+    - 1.0
+  distortion:
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0

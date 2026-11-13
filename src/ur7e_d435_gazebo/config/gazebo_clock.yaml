@@ -1,0 +1,5 @@
+# Official gazebo_ros_init publish_rate: only clock publication, not physics
+# step size, camera resolution/rate or real-time factor.
+/gazebo:
+  ros__parameters:
+    publish_rate: 100.0

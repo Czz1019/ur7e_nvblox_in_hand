@@ -1,0 +1,381 @@
+<?xml version="1.0"?>
+
+<robot
+    xmlns:xacro="http://wiki.ros.org/xacro"
+    name="d435_handeye_mount">
+
+  <!-- ============================================================
+       Intel RealSense D435 model
+       ============================================================ -->
+
+  <xacro:include
+      filename="$(find ur7e_d435_gazebo)/urdf/realsense/_d435.urdf.xacro"/>
+
+
+  <!-- ============================================================
+       Hand-eye mounted D435
+
+       TF structure:
+
+         parent/tool0
+               |
+               | easy_handeye2
+               v
+         camera_color_optical_frame
+               |
+               | D435 fixed internal geometry
+               v
+         camera_bottom_screw_frame
+               |
+               v
+           camera_link
+               |
+               +--> camera_depth_frame
+               |         |
+               |         v
+               |    camera_depth_optical_frame
+               |
+               +--> camera_infra1_frame
+               |
+               +--> camera_infra2_frame
+
+       ============================================================ -->
+
+  <xacro:macro
+      name="d435_handeye_mount"
+      params="parent calibration_file">
+
+
+    <!-- ==========================================================
+         1. Load hand-eye calibration
+         ========================================================== -->
+
+    <xacro:property
+        name="eih"
+        value="${xacro.load_yaml(calibration_file)}"/>
+
+    <xacro:property
+        name="t"
+        value="${eih['transform']['translation']}"/>
+
+    <xacro:property
+        name="q"
+        value="${eih['transform']['rotation']}"/>
+
+
+    <!-- ==========================================================
+         2. Normalize quaternion
+         ========================================================== -->
+
+    <xacro:property
+        name="qn"
+        value="${
+          sqrt(
+            q['x']*q['x'] +
+            q['y']*q['y'] +
+            q['z']*q['z'] +
+            q['w']*q['w']
+          )
+        }"/>
+
+    <xacro:property
+        name="qx"
+        value="${q['x']/qn}"/>
+
+    <xacro:property
+        name="qy"
+        value="${q['y']/qn}"/>
+
+    <xacro:property
+        name="qz"
+        value="${q['z']/qn}"/>
+
+    <xacro:property
+        name="qw"
+        value="${q['w']/qn}"/>
+
+
+    <!-- ==========================================================
+         3. Quaternion -> RPY
+
+         easy_handeye2 gives:
+
+              parent/tool0
+                    ->
+              camera_color_optical_frame
+
+         ========================================================== -->
+
+    <xacro:property
+        name="roll"
+        value="${
+          atan2(
+            2.0*(qw*qx + qy*qz),
+            1.0 - 2.0*(qx*qx + qy*qy)
+          )
+        }"/>
+
+    <xacro:property
+        name="pitch_arg"
+        value="${
+          max(
+            -1.0,
+            min(
+              1.0,
+              2.0*(qw*qy - qz*qx)
+            )
+          )
+        }"/>
+
+    <xacro:property
+        name="pitch"
+        value="${asin(pitch_arg)}"/>
+
+    <xacro:property
+        name="yaw"
+        value="${
+          atan2(
+            2.0*(qw*qz + qx*qy),
+            1.0 - 2.0*(qy*qy + qz*qz)
+          )
+        }"/>
+
+
+    <!-- ==========================================================
+         4. Hand-eye transform
+
+         tool0
+            |
+            | measured hand-eye transform
+            v
+         camera_color_optical_frame
+
+         IMPORTANT:
+         This is an optical coordinate frame.
+         It is NOT the camera housing origin.
+         ========================================================== -->
+
+    <link name="camera_color_optical_frame"/>
+
+    <joint
+        name="tool0_camera_color_optical_joint"
+        type="fixed">
+
+      <parent link="${parent}"/>
+
+      <child link="camera_color_optical_frame"/>
+
+      <origin
+          xyz="${t['x']} ${t['y']} ${t['z']}"
+          rpy="${roll} ${pitch} ${yaw}"/>
+
+    </joint>
+
+
+    <!-- ==========================================================
+         5. Optical center -> physical D435 mounting point
+
+         The Intel D435 URDF uses camera_bottom_screw_frame as
+         the external parent of the camera body.
+
+         From the D435 model:
+
+             bottom screw
+                  ->
+             camera_link
+                  ->
+             color_frame
+                  ->
+             color_optical
+
+         Here we need the inverse:
+
+             color_optical
+                  ->
+             bottom screw
+
+         Exact values derived from _d435.urdf.xacro:
+
+         xyz:
+              +0.032500
+              +0.012500
+              -0.010600
+
+         rpy:
+              +pi/2
+              -pi/2
+               0
+
+         ========================================================== -->
+
+    <xacro:sensor_d435
+        parent="camera_color_optical_frame"
+        name="camera"
+        use_nominal_extrinsics="false"
+        use_mesh="true">
+
+      <origin
+          xyz="0.0325 0.0125 -0.0106"
+          rpy="${pi/2.0} ${-pi/2.0} 0"/>
+
+    </xacro:sensor_d435>
+
+
+    <!-- ==========================================================
+         6. Reconstruct the normal camera body frame corresponding
+            to camera_color_optical_frame.
+
+         Normal RealSense relation is:
+
+             camera_color_frame
+                    ->
+             camera_color_optical_frame
+
+         rpy = -pi/2, 0, -pi/2
+
+         Since camera_color_optical_frame is already defined above,
+         here we construct the inverse relation.
+
+         ========================================================== -->
+
+    <link name="camera_color_frame"/>
+
+    <joint
+        name="camera_color_frame_joint"
+        type="fixed">
+
+      <parent link="camera_color_optical_frame"/>
+
+      <child link="camera_color_frame"/>
+
+      <origin
+          xyz="0 0 0"
+          rpy="${pi/2.0} ${-pi/2.0} 0"/>
+
+    </joint>
+
+
+    <!-- ==========================================================
+         7. Depth frame
+
+         camera_link -> depth_frame
+
+         D435 depth frame is used as the reference depth sensor
+         in the nominal model.
+         ========================================================== -->
+
+    <link name="camera_depth_frame"/>
+
+    <joint
+        name="camera_depth_joint"
+        type="fixed">
+
+      <parent link="camera_link"/>
+
+      <child link="camera_depth_frame"/>
+
+      <origin
+          xyz="0 0 0"
+          rpy="0 0 0"/>
+
+    </joint>
+
+
+    <link name="camera_depth_optical_frame"/>
+
+    <joint
+        name="camera_depth_optical_joint"
+        type="fixed">
+
+      <parent link="camera_depth_frame"/>
+
+      <child link="camera_depth_optical_frame"/>
+
+      <origin
+          xyz="0 0 0"
+          rpy="${-pi/2.0} 0 ${-pi/2.0}"/>
+
+    </joint>
+
+
+    <!-- ==========================================================
+         8. Infrared 1
+         ========================================================== -->
+
+    <link name="camera_infra1_frame"/>
+
+    <joint
+        name="camera_infra1_joint"
+        type="fixed">
+
+      <parent link="camera_link"/>
+
+      <child link="camera_infra1_frame"/>
+
+      <origin
+          xyz="0 0 0"
+          rpy="0 0 0"/>
+
+    </joint>
+
+
+    <link name="camera_infra1_optical_frame"/>
+
+    <joint
+        name="camera_infra1_optical_joint"
+        type="fixed">
+
+      <parent link="camera_infra1_frame"/>
+
+      <child link="camera_infra1_optical_frame"/>
+
+      <origin
+          xyz="0 0 0"
+          rpy="${-pi/2.0} 0 ${-pi/2.0}"/>
+
+    </joint>
+
+
+    <!-- ==========================================================
+         9. Infrared 2
+
+         Right IR is approximately 50 mm from left/depth
+         ========================================================== -->
+
+    <link name="camera_infra2_frame"/>
+
+    <joint
+        name="camera_infra2_joint"
+        type="fixed">
+
+      <parent link="camera_link"/>
+
+      <child link="camera_infra2_frame"/>
+
+      <origin
+          xyz="0 -0.050 0"
+          rpy="0 0 0"/>
+
+    </joint>
+
+
+    <link name="camera_infra2_optical_frame"/>
+
+    <joint
+        name="camera_infra2_optical_joint"
+        type="fixed">
+
+      <parent link="camera_infra2_frame"/>
+
+      <child link="camera_infra2_optical_frame"/>
+
+      <origin
+          xyz="0 0 0"
+          rpy="${-pi/2.0} 0 ${-pi/2.0}"/>
+
+    </joint>
+
+
+  </xacro:macro>
+
+</robot>

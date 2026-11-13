@@ -1,0 +1,257 @@
+{
+  "result": "PASS",
+  "runtime_result": "PASS",
+  "geometry": {
+    "pairs": [
+      {
+        "camera": "visual:camera_link:0",
+        "arm": "visual:base_link_inertia:0",
+        "collision": false,
+        "distance_m": 0.7838891023
+      },
+      {
+        "camera": "visual:camera_link:0",
+        "arm": "collision:base_link_inertia:0",
+        "collision": false,
+        "distance_m": 0.7838891009
+      },
+      {
+        "camera": "visual:camera_link:0",
+        "arm": "visual:shoulder_link:0",
+        "collision": false,
+        "distance_m": 0.6876128231
+      },
+      {
+        "camera": "visual:camera_link:0",
+        "arm": "collision:shoulder_link:0",
+        "collision": false,
+        "distance_m": 0.6876128257
+      },
+      {
+        "camera": "visual:camera_link:0",
+        "arm": "visual:upper_arm_link:0",
+        "collision": false,
+        "distance_m": 0.4453931028
+      },
+      {
+        "camera": "visual:camera_link:0",
+        "arm": "collision:upper_arm_link:0",
+        "collision": false,
+        "distance_m": 0.4453931025
+      },
+      {
+        "camera": "visual:camera_link:0",
+        "arm": "visual:forearm_link:0",
+        "collision": false,
+        "distance_m": 0.1606712562
+      },
+      {
+        "camera": "visual:camera_link:0",
+        "arm": "collision:forearm_link:0",
+        "collision": false,
+        "distance_m": 0.1606712619
+      },
+      {
+        "camera": "visual:camera_link:0",
+        "arm": "visual:wrist_1_link:0",
+        "collision": false,
+        "distance_m": 0.08282138004
+      },
+      {
+        "camera": "visual:camera_link:0",
+        "arm": "collision:wrist_1_link:0",
+        "collision": false,
+        "distance_m": 0.08282137756
+      },
+      {
+        "camera": "visual:camera_link:0",
+        "arm": "visual:wrist_2_link:0",
+        "collision": false,
+        "distance_m": 0.02696733303
+      },
+      {
+        "camera": "visual:camera_link:0",
+        "arm": "collision:wrist_2_link:0",
+        "collision": false,
+        "distance_m": 0.02696509405
+      },
+      {
+        "camera": "visual:camera_link:0",
+        "arm": "visual:wrist_3_link:0",
+        "collision": false,
+        "distance_m": 0.01214189853
+      },
+      {
+        "camera": "visual:camera_link:0",
+        "arm": "collision:wrist_3_link:0",
+        "collision": false,
+        "distance_m": 0.01214189412
+      },
+      {
+        "camera": "collision:camera_link:0",
+        "arm": "visual:base_link_inertia:0",
+        "collision": false,
+        "distance_m": 0.7778419503
+      },
+      {
+        "camera": "collision:camera_link:0",
+        "arm": "collision:base_link_inertia:0",
+        "collision": false,
+        "distance_m": 0.7778419488
+      },
+      {
+        "camera": "collision:camera_link:0",
+        "arm": "visual:shoulder_link:0",
+        "collision": false,
+        "distance_m": 0.6817355443
+      },
+      {
+        "camera": "collision:camera_link:0",
+        "arm": "collision:shoulder_link:0",
+        "collision": false,
+        "distance_m": 0.6817355469
+      },
+      {
+        "camera": "collision:camera_link:0",
+        "arm": "visual:upper_arm_link:0",
+        "collision": false,
+        "distance_m": 0.4386683776
+      },
+      {
+        "camera": "collision:camera_link:0",
+        "arm": "collision:upper_arm_link:0",
+        "collision": false,
+        "distance_m": 0.4386683772
+      },
+      {
+        "camera": "collision:camera_link:0",
+        "arm": "visual:forearm_link:0",
+        "collision": false,
+        "distance_m": 0.1591763829
+      },
+      {
+        "camera": "collision:camera_link:0",
+        "arm": "collision:forearm_link:0",
+        "collision": false,
+        "distance_m": 0.1591740017
+      },
+      {
+        "camera": "collision:camera_link:0",
+        "arm": "visual:wrist_1_link:0",
+        "collision": false,
+        "distance_m": 0.07989795291
+      },
+      {
+        "camera": "collision:camera_link:0",
+        "arm": "collision:wrist_1_link:0",
+        "collision": false,
+        "distance_m": 0.07989794907
+      },
+      {
+        "camera": "collision:camera_link:0",
+        "arm": "visual:wrist_2_link:0",
+        "collision": false,
+        "distance_m": 0.02499081881
+      },
+      {
+        "camera": "collision:camera_link:0",
+        "arm": "collision:wrist_2_link:0",
+        "collision": false,
+        "distance_m": 0.02499408526
+      },
+      {
+        "camera": "collision:camera_link:0",
+        "arm": "visual:wrist_3_link:0",
+        "collision": false,
+        "distance_m": 0.01214189853
+      },
+      {
+        "camera": "collision:camera_link:0",
+        "arm": "collision:wrist_3_link:0",
+        "collision": false,
+        "distance_m": 0.01214189412
+      }
+    ],
+    "collision": false,
+    "scope": "Camera visual mesh and collision box vs arm visual/collision geometry at supplied joint positions",
+    "minimum_distance_m": 0.01214189412,
+    "tool0_to_color_optical": [
+      [
+        -0.7064007040396562,
+        0.0024149660320823127,
+        -0.7078080341952483,
+        -0.029901376000000007
+      ],
+      [
+        0.7077839548410697,
+        -0.006516156031019016,
+        -0.706398904996401,
+        -0.06918591899999993
+      ],
+      [
+        -0.006318116951491537,
+        -0.9999758535332958,
+        0.0028937429989501218,
+        -0.01226344299999993
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ]
+  },
+  "calibration_file": "/home/czz/perception_eye_in_hand/install/ur7e_d435_gazebo/share/ur7e_d435_gazebo/config/ur7e_d435_handeye_20260907.yaml",
+  "package_share": "/home/czz/perception_eye_in_hand/install/ur7e_d435_gazebo/share/ur7e_d435_gazebo",
+  "models": [
+    "ur",
+    "sage_clean_cube1",
+    "sage_clean_cube2",
+    "sage_clean_sphere1"
+  ],
+  "active_controllers": [
+    "forward_position_controller",
+    "joint_state_broadcaster"
+  ],
+  "transform": {
+    "translation": {
+      "x": -0.029901376,
+      "y": -0.069185919,
+      "z": -0.012263443
+    },
+    "rotation": {
+      "x": -0.27259021854810417,
+      "y": -0.6513429981602794,
+      "z": 0.6549447692495959,
+      "w": 0.26924750831171806
+    }
+  },
+  "joint_positions": {
+    "shoulder_pan_joint": -6.202868466509415e-05,
+    "shoulder_lift_joint": -1.570003222440241,
+    "elbow_joint": 1.1000290474553331,
+    "wrist_1_joint": -1.5700210482359684,
+    "wrist_2_joint": -1.5699979019445611,
+    "wrist_3_joint": -1.280775210332763e-06
+  },
+  "topics": {
+    "/camera/color/image_raw": {
+      "frame": "camera_color_optical_frame",
+      "distinct_timestamps": 2
+    },
+    "/camera/depth/image_rect_raw": {
+      "frame": "camera_depth_optical_frame",
+      "distinct_timestamps": 2
+    },
+    "/camera/depth/color/points": {
+      "frame": "camera_depth_optical_frame",
+      "distinct_timestamps": 2
+    },
+    "/joint_states": {
+      "frame": "base_link",
+      "distinct_timestamps": 55
+    }
+  },
+  "mesh_references": "All assets are installed inside this package"
+}

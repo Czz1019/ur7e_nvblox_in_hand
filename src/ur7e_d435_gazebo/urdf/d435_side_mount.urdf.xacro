@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://wiki.ros.org/xacro">
+  <!-- Simplified side bracket, not a fabrication drawing. -->
+  <xacro:macro name="d435_side_mount">
+    <joint name="tool0_d435_mount_joint" type="fixed">
+      <parent link="tool0"/><child link="d435_mount_link"/>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+    </joint>
+    <link name="d435_mount_link">
+      <inertial>
+        <origin xyz="0 -0.055 0.008"/>
+        <mass value="0.04"/>
+        <inertia ixx="0.00002" ixy="0" ixz="0" iyy="0.00002" iyz="0" izz="0.00003"/>
+      </inertial>
+      <visual name="flange_edge_pad">
+        <origin xyz="0 -0.030 0.0022"/>
+        <geometry><box size="0.016 0.010 0.004"/></geometry>
+        <material name="side_mount_aluminum"><color rgba="0.55 0.57 0.60 1"/></material>
+      </visual>
+      <collision name="flange_edge_pad">
+        <origin xyz="0 -0.030 0.0022"/>
+        <geometry><box size="0.016 0.010 0.004"/></geometry>
+      </collision>
+      <visual name="lateral_arm">
+        <origin xyz="0 -0.0525 0.0062"/>
+        <geometry><box size="0.012 0.045 0.004"/></geometry>
+        <material name="side_mount_aluminum"><color rgba="0.55 0.57 0.60 1"/></material>
+      </visual>
+      <collision name="lateral_arm">
+        <origin xyz="0 -0.0525 0.0062"/>
+        <geometry><box size="0.012 0.045 0.004"/></geometry>
+      </collision>
+      <visual name="camera_support">
+        <origin xyz="0 -0.075 0.0101"/>
+        <geometry><box size="0.012 0.012 0.0038"/></geometry>
+        <material name="side_mount_aluminum"><color rgba="0.55 0.57 0.60 1"/></material>
+      </visual>
+      <collision name="camera_support">
+        <origin xyz="0 -0.075 0.0101"/>
+        <geometry><box size="0.012 0.012 0.0038"/></geometry>
+      </collision>
+      <visual name="camera_back_plate">
+        <origin xyz="0 -0.075 0.01345"/>
+        <geometry><box size="0.070 0.023 0.0029"/></geometry>
+        <material name="side_mount_aluminum"><color rgba="0.55 0.57 0.60 1"/></material>
+      </visual>
+      <collision name="camera_back_plate">
+        <origin xyz="0 -0.075 0.01345"/>
+        <geometry><box size="0.070 0.023 0.0029"/></geometry>
+      </collision>
+    </link>
+    <gazebo reference="d435_mount_link"><material>Gazebo/Grey</material></gazebo>
+  </xacro:macro>
+</robot>

@@ -1,0 +1,8 @@
+/build*/
+/install*/
+/log/
+/.ros/
+/.venv/
+__pycache__/
+*.pyc
+/artifacts/

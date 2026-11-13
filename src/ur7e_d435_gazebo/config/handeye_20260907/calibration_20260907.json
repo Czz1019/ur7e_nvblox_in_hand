@@ -1,0 +1,35 @@
+{
+  "datasets": ["20260907_165639", "20260907_170857"],
+  "accepted_images": 22,
+  "detected_markers_per_image": 17,
+  "detected_charuco_corners_per_image": 24,
+  "board": {
+    "dictionary": "DICT_4X4_1000",
+    "squares_x": 7,
+    "squares_y": 5,
+    "square_length_mm": 25.0,
+    "marker_length_mm": 18.0,
+    "start_id": 0
+  },
+  "runtime_intrinsics": {
+    "source": "identical live CameraInfo in both datasets",
+    "resolution": [1920, 1080],
+    "camera_matrix": [[1367.0, 0.0, 958.9885864257812], [0.0, 1367.4913330078125, 574.5275268554688], [0.0, 0.0, 1.0]],
+    "distortion": [0.0, 0.0, 0.0, 0.0, 0.0]
+  },
+  "unconstrained_intrinsic_fit": {
+    "rms_reprojection_error_px": 0.1669671071,
+    "status": "not deployed",
+    "reason": "board coverage was concentrated near the image center, producing poorly constrained radial distortion"
+  },
+  "hand_eye": {
+    "method": "joint nonlinear reprojection optimization with fixed live intrinsics and fixed base-to-board pose",
+    "global_corner_rmse_px": 2.1793760746,
+    "gripper_T_camera": [[-0.706400704, 0.002414966, -0.707808034, -0.029901376], [0.707783955, -0.006516156, -0.706398905, -0.069185919], [-0.006318117, -0.999975854, 0.002893743, -0.012263443], [0.0, 0.0, 0.0, 1.0]],
+    "translation_unit": "metre"
+  },
+  "deployment": {
+    "calibration_yaml": "src/locatornew_ros2/config/legacy_calibration.yaml",
+    "requires_motion_disabled_visual_check": true
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "date": "2026-11-09",
+  "validated_run": "artifacts/simulation_20261109_174244",
+  "status": "completed",
+  "mesh_vertices": 4213,
+  "mesh_triangles": 6014
+}
